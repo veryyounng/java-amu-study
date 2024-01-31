@@ -59,16 +59,17 @@ public class mrReservation {
 
         for (Reservation reservation : reservations) {
             if (currentStart < reservation.start) {
-                availableTimeSlots.add(String.format("%02d-%02d", currentStart, reservation.start));
+                availableTimeSlots.add(String.format("%02d-%02d", currentStart, Math.min(reservation.start, 18)));
             }
             currentStart = Math.max(currentStart, reservation.end);
         }
 
         if (currentStart < 18) {
-            availableTimeSlots.add(String.format("%02d-18", currentStart));
+            availableTimeSlots.add(String.format("%02d-18", currentStart,18));
         }
 
         return availableTimeSlots;
     }
+
 }
 
